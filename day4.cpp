@@ -220,7 +220,7 @@ int find_xmas_part_b(std::vector<std::vector<char>>& matrix) {
 int main() {
 	long int xmas_counter = 0;
 
-	std::ifstream myfile("day4Input.txt");
+	std::ifstream myfile("/inputs/day4Input.txt");
 
 	std::string line;
 	std::vector<std::vector<char>> matrix;
@@ -264,5 +264,4 @@ int main() {
 
 	int xmas = find_xmas_part_b(originalMatrix);
 	std::cout << "X-MAS COUNTER PART B: " << xmas << std::endl;
-	return 0;
 }
