@@ -3,6 +3,7 @@
 #include <type_traits>
 #include "concepts.hpp"
 #include "santasHelper.hpp"
+#include <string>
 
 SantasHelper::SantasHelper() {}
 SantasHelper::~SantasHelper() {}
@@ -20,6 +21,10 @@ void SantasHelper::print(T t) {
         SantasHelper::print_unordered_map(t);
     } else if constexpr (concepts::is_vector<T>) {
         SantasHelper::print_vector(t);
+    } else if constexpr (concepts::is_simple_printable<T>) {
+        std::println("{}", t);
+    } else {
+        std::println("Type not supported");
     }
 }
 
@@ -89,11 +94,22 @@ void SantasHelper::print_1d_vector(std::vector<T> v) {
 template<typename T>
 requires concepts::Iterable<T>
 void SantasHelper::print_2d_vector(std::vector<T> v) {
-    for (const auto& i : v) {
-        for (const auto& j : i) {
-            std::print("{} ", j);
-        }
+    // Don't print spaces between characters if the vector contains characters
+    if constexpr (std::is_same<T, std::vector<char>>::value) {
+        for (const auto& i : v) {
+            for (const auto& j : i) {
+                std::print("{}", j);
+            }
         std::println();
+        }
+    }
+    else {
+        for (const auto& i : v) {
+            for (const auto& j : i) {
+                std::print("{} ", j);
+            }
+            std::println();
+        }
     }
 }
 

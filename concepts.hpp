@@ -1,5 +1,7 @@
 #pragma once
 #include <type_traits>
+#include <string>
+#include <print>
 
 namespace concepts {
     template<typename T>
@@ -36,5 +38,10 @@ namespace concepts {
         typename T::key_equal;
         typename T::allocator_type;
         requires std::same_as<T, std::unordered_map<typename T::key_type, typename T::mapped_type, typename T::hasher, typename T::key_equal, typename T::allocator_type>>;
+    };
+
+    template<typename T>
+    concept is_simple_printable = requires {
+        requires std::is_arithmetic<T>::value || is_string<T>;
     };
 }
