@@ -32,8 +32,7 @@ private:
         template<typename T>
         void print_vector(std::vector<T> v);
 
-        template<typename T1, typename T2>
-        requires concepts::Iterable<T2>
+        template<typename T1, concepts::Iterable T2>
         void print_map_with_iterable_value(std::map<T1, T2> m);
 
         template<typename T>
@@ -53,6 +52,6 @@ private:
 
 };
 
-// Template definitions need to be in the header file
-#include "santasHelper.cpp"
+// Template definitions need to be in the header file (e.g. .tpp or .impl file)
+#include "santasHelper.tpp"
 

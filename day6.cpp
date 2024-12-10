@@ -114,8 +114,6 @@ void count_distinct_positions(std::vector<std::vector<char>> map) {
 
 }
 
-
-
 int main () {
     std::println("{}", "######### Day 6 ##########");
     std::string dir{getcwd(NULL, 0)};     
